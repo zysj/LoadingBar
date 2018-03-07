@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Demo of LoadingBar</title>
+        <link rel="stylesheet" href="LoadingBar.css"/>
+    </head>
+    <body>
+        <div loading-bar></div>
+    </body>
+    <script type="text/javascript" src="../lib/jquery.js"></script>
+    <script type="text/javascript" src="LoadingBar.js"></script>
+    <script type="text/javascript">
+        var bar = LoadingBar();
+        var timer = null;
+        var index = 0;
+        function test(){
+            if(timer)clearTimeout(timer);
+            timer = setTimeout(function(){
+                if(index == 10){bar.end();return}
+                bar.toProgress(index*10);
+                index++;
+                test();
+            },250)
+        }
+        bar.start();
+        test();
+    </script>
+</html>
